@@ -82,7 +82,7 @@ function updateStory(scene) {
             break;
         case '2BA':
             storyText.textContent = "You make it past the guard, weapons drawn, and shoot your way out!";
-            storyImage.src = "shootout.jpg";
+            storyImage.src = "Shootout.jpg";
             break;
         case '2BB':
             storyText.textContent = "You knock out the guard, disguise yourself, and sneak away unnoticed.";
