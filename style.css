@@ -24,10 +24,13 @@ h1 {
 }
 
 #start-screen p {
-    font-size: 1.2em;
+    font-size: 1.5em;
     color: #bbb;
     margin-top: 20px;
     margin-bottom: 30px;
+    max-width: 1000px;
+    text-align: justify;
+    letter-spacing: -0.5px;
 }
 
 #game-container {
