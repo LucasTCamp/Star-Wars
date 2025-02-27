@@ -1,9 +1,16 @@
+const startScreen = document.getElementById('start-screen');
+const gameContainer = document.getElementById('game-container');
+const startButton = document.getElementById('start-button');
+const playerNameInput = document.getElementById('player-name');
+const displayName = document.getElementById('display-name');
 const storyText = document.getElementById('story-text');
 const storyImage = document.getElementById('story-image');
 const choice1Button = document.getElementById('choice1');
 const choice2Button = document.getElementById('choice2');
+const tooltip = document.getElementById('tooltip'); // The tooltip div
 
 let currentScene = 'start';
+let playerName = '';
 
 const choices = {
     start: [
@@ -36,23 +43,33 @@ const choices = {
     ],
 };
 
+const sceneTooltips = {
+    start: "You are locked in a cold, dark detention cell aboard the Death Star. A chance for escape or sabotage is coming...",
+    '1A': "The guard seems distracted. Now is your chance to use the Force to escape!",
+    '1B': "You just grabbed the blaster. A fight may be your only way out!",
+    '2AA': "The guard is convinced. He's opening the cell door for you.",
+    '2AB': "You're heading to the control room. Time to sabotage the Death Star!",
+    '2BA': "You are armed. Prepare to fight your way out!",
+    '2BB': "You've disguised yourself. It's time to move unnoticed through the station."
+};
+
 function updateStory(scene) {
     let currentChoices = choices[scene];
 
     if (scene === '3AAA' || scene === '3AAB' || scene === '3BBA') {
-        storyText.textContent = "You survive and flee the Death Star!";
+        storyText.textContent = `You survive and flee the Death Star, ${playerName}!`;
         storyImage.src = "escape.jpg";
         choice1Button.style.display = 'none';
         choice2Button.style.display = 'none';
         return;
     } else if (scene === '3ABA' || scene === '3ABB' || scene === '3BBB') {
-        storyText.textContent = "You sacrifice yourself but destroy the Death Star in the process!";
+        storyText.textContent = `You sacrifice yourself but destroy the Death Star in the process, ${playerName}!`;
         storyImage.src = "Destruction.jpg";
         choice1Button.style.display = 'none';
         choice2Button.style.display = 'none';
         return;
     } else if (scene === '3BAA' || scene === '3BAB') {
-        storyText.textContent = "Darth Vader catches you!";
+        storyText.textContent = `Darth Vader catches you, ${playerName}!`;
         storyImage.src = "darth_vader.jpg";
         choice1Button.style.display = 'none';
         choice2Button.style.display = 'none';
@@ -61,7 +78,7 @@ function updateStory(scene) {
 
     switch(scene) {
         case 'start':
-            storyText.textContent = "You wake up in a cold, dark detention cell aboard the Death Star...";
+            storyText.textContent = `You wake up in a cold, dark detention cell aboard the Death Star, ${playerName}...`;
             storyImage.src = "Detention_cell.jpg";
             break;
         case '1A':
@@ -100,4 +117,28 @@ function updateStory(scene) {
     }
 }
 
-updateStory(currentScene);
+function showTooltip() {
+    tooltip.textContent = sceneTooltips[currentScene] || "No extra info available.";
+    tooltip.style.display = 'block';
+}
+
+function hideTooltip() {
+    tooltip.style.display = 'none';
+}
+
+function startGame() {
+    playerName = playerNameInput.value.trim();
+    if (playerName !== '') {
+        displayName.textContent = `Player: ${playerName}`;
+        startScreen.style.display = 'none';
+        gameContainer.style.display = 'block';
+        gameContainer.classList.add('show');
+        updateStory(currentScene);
+    } else {
+        alert("Please enter a name!");
+    }
+}
+
+startButton.addEventListener('click', startGame);
+storyImage.addEventListener('mouseover', showTooltip);
+storyImage.addEventListener('mouseout', hideTooltip);
