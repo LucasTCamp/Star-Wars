@@ -7,7 +7,7 @@ const storyText = document.getElementById('story-text');
 const storyImage = document.getElementById('story-image');
 const choice1Button = document.getElementById('choice1');
 const choice2Button = document.getElementById('choice2');
-const tooltip = document.getElementById('tooltip'); // The tooltip div
+const tooltip = document.getElementById('tooltip'); 
 
 let currentScene = 'start';
 let playerName = '';
