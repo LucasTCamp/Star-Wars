@@ -1,3 +1,4 @@
+// This is referencing the html elements
 const startScreen = document.getElementById('start-screen');
 const gameContainer = document.getElementById('game-container');
 const startButton = document.getElementById('start-button');
@@ -8,10 +9,11 @@ const storyImage = document.getElementById('story-image');
 const choice1Button = document.getElementById('choice1');
 const choice2Button = document.getElementById('choice2');
 const tooltip = document.getElementById('tooltip'); 
-
+//Variables that are used for the scenes and playerName
 let currentScene = 'start';
 let playerName = '';
 
+//This is an array of all the choices in the game and the next scene when that choice is clicked
 const choices = {
     start: [
         { text: "Use the force to trick the guard", nextScene: '1A' },
@@ -42,7 +44,7 @@ const choices = {
         { text: "Head to the reactor core to sabotage the station", nextScene: '3BBB' }
     ],
 };
-
+//This is declaring the tooltips that will be displayed if the user hovers over an image.
 const sceneTooltips = {
     start: "You are locked in a cold, dark detention cell aboard the Death Star. A chance for escape or sabotage is coming...",
     '1A': "The guard seems distracted. Now is your chance to use the Force to escape!",
@@ -52,7 +54,7 @@ const sceneTooltips = {
     '2BA': "You are armed. Prepare to fight your way out!",
     '2BB': "You've disguised yourself. It's time to move unnoticed through the station."
 };
-
+//This was just a function I made to update the story scene which is used later in the for loop.
 function updateStory(scene) {
     let currentChoices = choices[scene];
 
@@ -75,7 +77,7 @@ function updateStory(scene) {
         choice2Button.style.display = 'none';
         return;
     }
-
+//Updates the story text and image for that scene.
     switch(scene) {
         case 'start':
             storyText.textContent = `You wake up in a cold, dark detention cell aboard the Death Star, ${playerName}...`;
@@ -106,7 +108,7 @@ function updateStory(scene) {
             storyImage.src = "disguise.jpg";
             break;
     }
-
+    //This is the for loop that runs the game and executes the functions.
     for (let i = 0; i < currentChoices.length; i++) {
         const button = i === 0 ? choice1Button : choice2Button;
         button.textContent = currentChoices[i].text;
@@ -116,16 +118,16 @@ function updateStory(scene) {
         };
     }
 }
-
+//This displays the tooltip at that current scene
 function showTooltip() {
-    tooltip.textContent = sceneTooltips[currentScene] || "No extra info available.";
+    tooltip.textContent = sceneTooltips[currentScene];
     tooltip.style.display = 'block';
 }
 
 function hideTooltip() {
     tooltip.style.display = 'none';
 }
-
+//This is just a function to start the game and call the functions 
 function startGame() {
     playerName = playerNameInput.value.trim();
     if (playerName !== '') {
@@ -138,7 +140,7 @@ function startGame() {
         alert("Please enter a name!");
     }
 }
-
+//Calls the function ''startGame'' to run the game after the user clicks start game
 startButton.addEventListener('click', startGame);
 storyImage.addEventListener('mouseover', showTooltip);
 storyImage.addEventListener('mouseout', hideTooltip);

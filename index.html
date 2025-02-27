@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div id="start-screen">
+    <-- this is the start screen where it will display the context and will ask for the user's name -->
+    <div id="start-screen">   
         <h1>Trapped in the Death Star</h1>
         <p>You were caught harboring rebels on your home planet, Ubulu. The Empire showed no mercy. Stormtroopers raided your home, arrested you, and dragged you onto a transport bound for the dreaded Death Star. You are now locked in a cold, dimly lit detention cell.</p>
         <p>An Imperial guard enters your room, blaster in hand. You know this may be a chance at freedom or possibly sabotaging the Death Star and saving the galaxy.</p>
@@ -16,8 +16,8 @@
         <input type="text" id="player-name" placeholder="Enter your name">
         <button id="start-button">Start Game</button>
     </div>
-
-    <div id="game-container" style="display: none;">
+    <-- This is the game container that contains the elements of the scenes -->
+    <div id="game-container" style="display: none;">   
         <div id="display-name"></div>
         <h1>Escape from the Death Star</h1>
         <p id="story-text"></p>
@@ -29,7 +29,7 @@
     </div>
 
     <div id="tooltip" style="display: none;"></div>
-
+    <-- links the Javascript file that basically runs the game -->
     <script src="script.js"></script>
 </body>
 </html>
