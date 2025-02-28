@@ -13,7 +13,9 @@ const tooltip = document.getElementById('tooltip');
 let currentScene = 'start';
 let playerName = '';
 
-//This is an array of all the choices in the game and the next scene when that choice is clicked
+// This is an object that stores the possible choices for each scene in the game. 
+// Each scene has an array of choices
+
 const choices = {
     start: [
         { text: "Use the force to trick the guard", nextScene: '1A' },
@@ -44,7 +46,7 @@ const choices = {
         { text: "Head to the reactor core to sabotage the station", nextScene: '3BBB' }
     ],
 };
-//This is declaring the tooltips that will be displayed if the user hovers over an image.
+//An object that contains the tooltips for each scene.
 const sceneTooltips = {
     start: "You are locked in a cold, dark detention cell aboard the Death Star. A chance for escape or sabotage is coming...",
     '1A': "The guard seems distracted. Now is your chance to use the Force to escape!",
